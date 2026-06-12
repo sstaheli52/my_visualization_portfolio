@@ -16,24 +16,24 @@
   .nav-inner a { color: #9C7894; text-decoration: none; transition: color 0.15s; }
   .nav-inner a:hover { color: #55597C; }
 
-  .hero { padding: 56px 40px 28px; }
+  .hero { padding: 56px 40px 28px; position: relative; z-index: 1; }
   .hero-title { font-family: 'Shrikhand', serif; font-size: 82px; line-height: 0.95; color: #55597C; margin-bottom: 20px; }
   .hero-bio { font-size: 12px; color: #777A9D; line-height: 1.75; max-width: 420px; }
 
-  .bubbles { display: grid; grid-template-columns: 1.6fr 1fr; gap: 14px; padding: 0 40px 32px; height: 300px; }
-  .bubble-l { border-radius: 20px; overflow: hidden; background: #BCA8C1; }
-  .bubble-l img { width: 100%; height: 100%; object-fit: cover; }
-  .bubble-r { border-radius: 20px; overflow: hidden; background: #C8CEEE; display: flex; align-items: flex-end; justify-content: center; }
-  .bubble-r img { height: 95%; object-fit: contain; }
+  .bubbles { position: relative; height: clamp(480px, 40vw, 760px); margin-top: -140px; margin-bottom: 32px; }
+  .bubble-l { position: absolute; inset: 0; overflow: hidden; }
+  .bubble-l img { width: 100%; height: 100%; object-fit: cover; object-position: center 25%; -webkit-mask-image: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.4) 25%, black 55%); mask-image: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.4) 25%, black 55%); }
+  .bubble-r { position: absolute; right: 0; top: 0; bottom: 0; width: 38%; display: flex; align-items: center; justify-content: center; }
+  .bubble-r img { height: 100%; width: 100%; object-fit: contain; transform: scale(1.6) translate(21.8%, -16.8%); }
 
   /* MAP */
-  .map-section { margin: 0 40px 40px; }
-  .section-header { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; color: #9C7894; margin-bottom: 16px; }
-  .map-wrap { position: relative; height: 340px; }
-  .map-img-clip { background: #e8eaf6; border-radius: 18px; overflow: hidden; position: absolute; inset: 0; }
-  .map-img-clip img { width: 100%; height: 100%; object-fit: cover; filter: saturate(0.25) brightness(1.7) contrast(0.85); mix-blend-mode: multiply; }
+  .map-section { margin: 0 0 16px; }
+  .section-header { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; color: #55597C; margin-bottom: 16px; }
+  .map-wrap { position: relative; aspect-ratio: 2.8 / 1; }
+  .map-img-clip { border-radius: 18px; overflow: hidden; position: absolute; inset: 0; }
+  .map-img-clip img { width: 100%; height: 100%; object-fit: cover; object-position: center 40%; }
 
-  .mdot { position: absolute; width: 11px; height: 11px; border-radius: 50%; background: #DDB5B6; border: 2px solid #fff; cursor: pointer; z-index: 2; }
+  .mdot { position: absolute; width: 11px; height: 11px; border-radius: 50%; background: #FB2C36; border: 2px solid #fff; cursor: pointer; z-index: 2; }
   .tooltip {
     display: none;
     position: absolute;
@@ -66,14 +66,16 @@
 
   /* PROJECTS */
   .projects { margin: 0 40px 40px; }
-  .proj-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .proj-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; align-items: start; }
   .proj-card { border-radius: 14px; overflow: hidden; border: 0.5px solid #e8e8e8; cursor: pointer; transition: box-shadow 0.2s; }
   .proj-card:hover { box-shadow: 0 4px 20px rgba(85,89,124,0.1); }
-  .proj-img { height: 88px; background: #EEE7EF; }
+  .proj-img { background: #EEE7EF; }
+  .proj-img img { width: 100%; height: auto; display: block; }
   .proj-body { padding: 14px; }
   .proj-course { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: #9C7894; }
   .proj-title { font-size: 13px; font-weight: 500; color: #55597C; margin-top: 4px; line-height: 1.4; }
   .proj-link { font-size: 11px; color: #BCA8C1; margin-top: 8px; }
+  .proj-desc { font-size: 11px; color: #888; margin-top: 6px; line-height: 1.5; }
 
   .skills { margin: 0 40px 40px; padding: 22px 24px; background: #EEE7EF; border-radius: 16px; }
   .skill-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
@@ -84,14 +86,12 @@
   .contact-h { font-family: 'Shrikhand', serif; font-size: 28px; color: #EEE7EF; }
   .contact-s { font-size: 12px; color: #BCA8C1; margin-top: 5px; }
   .btn-row { display: flex; gap: 10px; }
-  .cbtn { background: #EEE7EF; color: #55597C; font-size: 12px; font-weight: 500; padding: 9px 20px; border-radius: 20px; border: none; font-family: inherit; cursor: pointer; }
+  .cbtn { background: #EEE7EF; color: #55597C; font-size: 12px; font-weight: 500; padding: 9px 20px; border-radius: 20px; border: none; font-family: inherit; cursor: pointer; text-decoration: none; display: inline-block; }
   #about, #map, #projects, #skills, #contact { scroll-margin-top: 80px; }
-  #edit-toggle { position: fixed; bottom: 24px; right: 24px; z-index: 999; background: #55597C; color: #fff; border: none; border-radius: 24px; padding: 10px 20px; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 500; cursor: pointer; box-shadow: 0 4px 16px rgba(85,89,124,0.3); }
-  #edit-toggle.active { background: #DDB5B6; color: #2a2d45; }
-  .edit-mode .mdot { cursor: grab; outline: 2px dashed #DDB5B6; outline-offset: 3px; }
-  .edit-mode .mdot:active { cursor: grabbing; }
-  #pos-readout { display: none; position: fixed; bottom: 70px; right: 24px; z-index: 999; background: #2a2d45; color: #EEE7EF; font-family: monospace; font-size: 11px; padding: 12px 16px; border-radius: 10px; max-width: 280px; line-height: 1.8; }
-  .edit-mode ~ #pos-readout, #pos-readout.visible { display: block; }
+  #photo-readout { display: none; }
+  #photo-readout.visible { display: block; }
+  .photo-drag-mode { cursor: grab !important; outline: 2px dashed #DDB5B6; outline-offset: -4px; }
+  .photo-drag-mode:active { cursor: grabbing !important; }
 </style>
 
 <div class="c">
@@ -103,7 +103,7 @@
 
   <div class="hero" id="about">
     <div class="hero-title">Hi,<br>I'm Sophia</div>
-    <p class="hero-bio">MSc student in Geo-Information Sciences at Wageningen University, passionate about using spatial data and machine learning to understand our changing planet &mdash; from peatlands to wildlife habitats to urban heat.</p>
+    <p class="hero-bio">A geospatial data scientist looking to contribute positivity and change to the world around me, one map at a time! Currently studying a Master&rsquo;s in Geo-Information Science at Wageningen University and excited to see where it takes me.</p>
   </div>
 
   <div class="bubbles">
@@ -113,25 +113,29 @@
 
   <!-- MAP -->
   <div class="map-section" id="map">
-    <div class="section-header">My Journey</div>
+    <div class="section-header" style="text-align: center; font-size: 18px; color: #C78A9A;">My Journey</div>
     <div class="map-wrap">
-      <div class="map-img-clip"><img src="Design/world_map.png" alt="world map" /></div>
-      <div class="mdot" style="top:29%; left:14%;">
-        <div class="tooltip"><strong>Seattle, WA &mdash; USA</strong>Born and raised (2002). Love of mountains, sea, and Pacific Northwest wildlife. Parents inspired a life of adventure &mdash; mom grew up in Switzerland, dad sailed the world after college.</div>
+      <div class="map-img-clip"><img src="Design/transparent_map_no_antartica.png" alt="world map" /></div>
+      <svg style="position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;" viewBox="0 0 100 100" preserveAspectRatio="none">
+        <polyline points="16.9,24.3 52.1,20.7 52.9,27.8 27.2,52.7 53.7,22.4 51.2,20.3"
+          fill="none" stroke="#000" stroke-width="1.5" stroke-dasharray="1.2,0.8" vector-effect="non-scaling-stroke" opacity="0.7"/>
+      </svg>
+      <div class="mdot" style="top:24.3%; left:16.9%;">
+        <div class="tooltip"><strong>Seattle, WA &mdash; USA</strong>This is where I was born and lived for the majority of my life. More importantly, this is where my ever growing love for the nature and the sea originated. My childhood consisted of traveling, sailing, skiing, hiking, biking, and playing tons of soccer.</div>
       </div>
-      <div class="mdot" style="top:20%; left:48.5%;">
+      <div class="mdot" style="top:20.7%; left:52.1%;">
         <div class="tooltip"><strong>Bremen, Germany &mdash; 2019&ndash;2020</strong>Rotary Youth Exchange at 16&ndash;17, living with host families. Practiced German and got my first taste of living abroad.</div>
       </div>
-      <div class="mdot" style="top:25%; left:50.2%;">
-        <div class="tooltip"><strong>Florence, Italy &mdash; 2021</strong>VERTO university semester. Courses in Statistics, Art History, and Sociology. First step into higher education abroad after COVID.</div>
+      <div class="mdot" style="top:27.8%; left:52.9%;">
+        <div class="tooltip" style="bottom:auto;top:18px;"><strong>Florence, Italy &mdash; 2021</strong>VERTO university semester. Courses in Statistics, Art History, and Sociology. First step into higher education abroad after COVID.</div>
       </div>
-      <div class="mdot" style="top:45%; left:23%;">
+      <div class="mdot" style="top:52.7%; left:27.2%;">
         <div class="tooltip"><strong>Turrialba, Costa Rica &mdash; 2022</strong>VERTO semester at an agricultural research institute. Studied ecology, comparative politics, and began learning Spanish. Traveled all over the country.</div>
       </div>
-      <div class="mdot" style="top:22%; left:51.8%;">
+      <div class="mdot" style="top:22.4%; left:53.7%;">
         <div class="tooltip"><strong>Prague, Czech Republic &mdash; 2022&ndash;2025</strong>BSc in Environmental Data Science at Czech University of Life Sciences. Courses in ecology, hydrology, GIS, and data visualization. Thesis on flood and ET dynamics.</div>
       </div>
-      <div class="mdot" style="top:19%; left:48.2%;">
+      <div class="mdot" style="top:20.3%; left:51.2%;">
         <div class="tooltip"><strong>Wageningen, Netherlands &mdash; 2025&ndash;present</strong>MSc in Geo-Information Sciences at Wageningen University &amp; Research. Remote Sensing, ML, Deep Learning, Geoscripting. Consultancy with Antea Group on airborne LiDAR obstacle detection.</div>
       </div>
     </div>
@@ -235,35 +239,37 @@
     <div class="section-header">Projects</div>
     <div class="proj-grid">
       <div class="proj-card">
-        <div class="proj-img"></div>
+        <div class="proj-img"><img src="past_visualizations/GIS_in_context_peatland.png" alt="Scotland Peatlands" /></div>
         <div class="proj-body">
           <div class="proj-course">GIS in Context</div>
           <div class="proj-title">Scotland's Peatlands: Opportunities for Investors</div>
-          <div class="proj-link">View storymap &rarr;</div>
+          <div class="proj-desc">This project was a StoryMap designed to inform and engage potential investors in Scottish peatland restoration. Peatlands cover approximately 20% of Scotland and store around 1.6 million tonnes of carbon, yet an estimated 80% are currently degraded and actively emitting CO2. The StoryMap communicated the ecological and financial case for restoration, combining narrative with spatial data to highlight peatland distribution across Scotland. Selected study areas were mapped in detail, with peat depth data used to calculate carbon storage in both shallow and deep peat layers. The primary goal was to bridge the funding gap left by government investment by making a compelling, data-driven case to private investors.</div>
+          <a href="https://storymaps.arcgis.com/stories/8bfadb89de5b4b60bb6b278223f3c407" target="_blank" rel="noopener" class="proj-link" style="display:block;text-decoration:none;">View storymap &rarr;</a>
         </div>
       </div>
       <div class="proj-card">
-        <div class="proj-img"></div>
+        <div class="proj-img"><img src="past_visualizations/Geoscripting_elephant_dashboard.jpeg" alt="Elephant Dashboard" /></div>
         <div class="proj-body">
           <div class="proj-course">Geoscripting</div>
           <div class="proj-title">Elephant Presence Modeling &mdash; Welgevonden Reserve</div>
-          <div class="proj-link">View project &rarr;</div>
+          <div class="proj-desc">This project used elephant tracking data and environmental covariates to model and predict elephant presence within the Welgevonden Game Reserve in South Africa. A logistic regression model was trained using variables such as distance to roads, human settlements, elevation, temperature, and time of day, and evaluated using confusion matrices, ROC curves, and AUC metrics. Kernel density estimates were also generated to identify spatial hotspots of elephant activity across the 2018 to 2020 period. Results were delivered through an interactive Shiny dashboard, allowing users to explore KDE heatmaps and adjust environmental parameters to visualize predicted probability of elephant presence. The codebase was designed to be adaptable, enabling other researchers to apply the same pipeline to different reserves and species datasets.</div>
         </div>
       </div>
       <div class="proj-card">
-        <div class="proj-img"></div>
+        <div class="proj-img"><img src="past_visualizations/Geotools.png" alt="Geotools Pipeline Routing" /></div>
         <div class="proj-body">
           <div class="proj-course">Geotools</div>
-          <div class="proj-title">Wastewater Pipeline Cost Routing (ArcGIS)</div>
-          <div class="proj-link">View project &rarr;</div>
+          <div class="proj-title">Wastewater Pipeline Routing</div>
+          <div class="proj-desc">This project used ArcGIS to determine the optimal pipeline routes connecting industrial wastewater areas to the largest water refinement basin in Druten, the Netherlands. A cost raster was constructed by incorporating multiple spatial constraints, with suitability values scaled between 1 and 100 to reflect varying levels of routing difficulty. Least-cost path analysis was then applied to calculate the most efficient possible connections between each wastewater source and the target basin. All outputs were consolidated into a single map deliverable, displaying the refinement basin, wastewater areas, candidate pipeline routes, and the final suitability cost raster.</div>
         </div>
       </div>
       <div class="proj-card">
-        <div class="proj-img"></div>
+        <div class="proj-img"><img src="past_visualizations/IDHV_heatmap.png" alt="IDHV Heatmap" /></div>
         <div class="proj-body">
           <div class="proj-course">IDHV</div>
-          <div class="proj-title">Groenlo Watchtower: Wildlife &amp; Viewshed Vote</div>
-          <div class="proj-link">View prototype &rarr;</div>
+          <div class="proj-title">Groenlo Wildlife Watchtower: Thermal Activity and Viewshed Analysis</div>
+          <div class="proj-desc">This project aimed to engage the public in selecting the location for a new wildlife watchtower in Groenlo, Netherlands, through a participatory digital platform. Early morning drone flights equipped with thermal sensors were conducted across three candidate sites to capture wildlife activity, successfully identifying birds and deer in their natural habitat. A terrestrial lidar scanner was used to perform viewshed analyses at each location, producing clear 2D maps showing what visitors would be able to see from each proposed tower. Orthomosaic heatmaps with labeled wildlife were generated for each site and incorporated into a Figma-designed, clickable website where members of the public could review the evidence and cast their vote. The project combined advanced geospatial methods with accessible web design to make technical outputs meaningful and actionable for a general audience.</div>
+          <a href="https://www.figma.com/proto/DQQdoqkyrZIihxVoRdX7qW/Hotspotters---Vote-for-Watchtower?node-id=780-1074&t=LAj0p059KCPO23OE-1" target="_blank" rel="noopener" class="proj-link" style="display:block;text-decoration:none;">View prototype &rarr;</a>
         </div>
       </div>
     </div>
@@ -283,66 +289,12 @@
       <div class="contact-s">sstaheli52@gmail.com</div>
     </div>
     <div class="btn-row">
-      <button class="cbtn">LinkedIn</button>
-      <button class="cbtn">Download CV</button>
+      <a href="https://www.linkedin.com/in/sophia-staheli" target="_blank" rel="noopener" class="cbtn">LinkedIn</a>
+      <a href="Sophia_Staheli_CV_0725.pdf" download="Sophia_Staheli_CV.pdf" target="_blank" rel="noopener" class="cbtn">Download CV</a>
     </div>
   </div>
 
 </div>
 
-<button id="edit-toggle">✏️ Edit dot positions</button>
-<div id="pos-readout"></div>
-
-<script>
-  const toggle = document.getElementById('edit-toggle');
-  const readout = document.getElementById('pos-readout');
-  const mapWrap = document.querySelector('.map-wrap');
-  let editMode = false;
-
-  toggle.addEventListener('click', () => {
-    editMode = !editMode;
-    mapWrap.classList.toggle('edit-mode', editMode);
-    toggle.classList.toggle('active', editMode);
-    toggle.textContent = editMode ? '✅ Done editing' : '✏️ Edit dot positions';
-    readout.classList.toggle('visible', editMode);
-    if (editMode) updateReadout();
-  });
-
-  function updateReadout() {
-    const dots = mapWrap.querySelectorAll('.mdot');
-    const rect = mapWrap.querySelector('.map-img-clip').getBoundingClientRect();
-    let html = '<strong>Dot positions:</strong><br>';
-    dots.forEach(dot => {
-      const name = dot.querySelector('strong').textContent.split('—')[0].trim();
-      html += `${name}: top=${dot.style.top} left=${dot.style.left}<br>`;
-    });
-    readout.innerHTML = html;
-  }
-
-  // Drag logic
-  mapWrap.addEventListener('mousedown', e => {
-    const dot = e.target.closest('.mdot');
-    if (!dot || !editMode) return;
-    e.preventDefault();
-
-    const mapRect = mapWrap.getBoundingClientRect();
-
-    const onMove = e => {
-      const x = ((e.clientX - mapRect.left) / mapRect.width * 100).toFixed(1);
-      const y = ((e.clientY - mapRect.top) / mapRect.height * 100).toFixed(1);
-      dot.style.left = x + '%';
-      dot.style.top = y + '%';
-      updateReadout();
-    };
-
-    const onUp = () => {
-      document.removeEventListener('mousemove', onMove);
-      document.removeEventListener('mouseup', onUp);
-    };
-
-    document.addEventListener('mousemove', onMove);
-    document.addEventListener('mouseup', onUp);
-  });
-</script>
 </body>
 </html>
